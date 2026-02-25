@@ -1,0 +1,86 @@
+---
+import logoLight from '../../assets/logo-light.svg';
+import { Image } from 'astro:assets';
+---
+
+<a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-accent-500 focus:px-4 focus:py-2 focus:text-white">
+  Skip to content
+</a>
+
+<header class="fixed inset-x-0 top-0 z-50 border-b border-gray-800/50 bg-gray-950/80 backdrop-blur-xl">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <!-- Logo -->
+    <a href="/" class="flex shrink-0 items-center gap-2">
+      <Image src={logoLight} alt="VaulType" class="h-8 w-auto" />
+    </a>
+
+    <!-- Desktop nav -->
+    <div class="hidden items-center gap-8 md:flex">
+      <a href="#features" class="text-sm font-medium text-gray-400 transition-colors hover:text-white">Features</a>
+      <a href="#how-it-works" class="text-sm font-medium text-gray-400 transition-colors hover:text-white">How It Works</a>
+      <a href="/getting-started/quick-start/" class="text-sm font-medium text-gray-400 transition-colors hover:text-white">Docs</a>
+      <a href="https://github.com/vaultype/vaultype" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-gray-400 transition-colors hover:text-white">GitHub</a>
+    </div>
+
+    <!-- Desktop CTA -->
+    <a
+      id="download-dmg-header"
+      href="https://github.com/vaultype/VaulType/releases"
+      class="hidden rounded-lg bg-accent-500 px-5 py-2 text-sm font-semibold text-white transition-all hover:bg-accent-600 hover:shadow-lg hover:shadow-accent-500/20 md:inline-flex"
+    >
+      Download
+    </a>
+
+    <!-- Mobile hamburger -->
+    <button
+      id="mobile-menu-toggle"
+      type="button"
+      class="inline-flex items-center justify-center rounded-lg p-2 text-gray-400 transition-colors hover:text-white md:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Toggle navigation menu"
+    >
+      <svg id="menu-icon-open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <svg id="menu-icon-close" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden border-t border-gray-800/50 bg-gray-950/95 backdrop-blur-xl md:hidden">
+    <div class="flex flex-col gap-1 px-6 py-4">
+      <a href="#features" class="rounded-lg px-3 py-2.5 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-800/50 hover:text-white">Features</a>
+      <a href="#how-it-works" class="rounded-lg px-3 py-2.5 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-800/50 hover:text-white">How It Works</a>
+      <a href="/getting-started/quick-start/" class="rounded-lg px-3 py-2.5 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-800/50 hover:text-white">Docs</a>
+      <a href="https://github.com/vaultype/vaultype" target="_blank" rel="noopener noreferrer" class="rounded-lg px-3 py-2.5 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-800/50 hover:text-white">GitHub</a>
+      <a id="download-dmg-mobile" href="https://github.com/vaultype/VaulType/releases" class="mt-2 rounded-lg bg-accent-500 px-3 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-accent-600">Download</a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+
+  toggle?.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    menu?.classList.toggle('hidden');
+    iconOpen?.classList.toggle('hidden');
+    iconClose?.classList.toggle('hidden');
+  });
+
+  menu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      iconOpen?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+      toggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>

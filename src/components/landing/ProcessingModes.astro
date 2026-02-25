@@ -1,0 +1,221 @@
+---
+import SectionHeading from '../shared/SectionHeading.astro';
+
+const modes = [
+  { id: 'raw', name: 'Raw' },
+  { id: 'clean', name: 'Clean' },
+  { id: 'structure', name: 'Structure' },
+  { id: 'prompt', name: 'Prompt' },
+  { id: 'code', name: 'Code' },
+  { id: 'custom', name: 'Custom' },
+];
+
+const defaultMode = 'clean';
+
+const codeAfter = `/**
+ * Retrieves a user profile by ID with caching.
+ *
+ * Looks up the user in the database, verifies
+ * their permissions, and returns the profile
+ * data. Results are cached for performance.
+ *
+ * @param userId - The unique user identifier
+ * @returns The user profile object
+ * @throws UnauthorizedError
+ */`;
+---
+
+<section id="processing-modes" class="py-24 px-6">
+  <div data-animate>
+    <SectionHeading
+      title="Six Modes. One Voice."
+      subtitle="From raw transcription to structured code comments — choose how your voice becomes text."
+    />
+  </div>
+
+  <div data-animate class="mx-auto mt-16 max-w-4xl">
+    <!-- Tab bar -->
+    <div class="flex flex-wrap justify-center gap-2" role="tablist">
+      {modes.map(mode => (
+        <button
+          role="tab"
+          aria-selected={mode.id === defaultMode ? 'true' : 'false'}
+          data-tab={mode.id}
+          class:list={[
+            'rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200',
+            mode.id === defaultMode
+              ? 'bg-accent-500 text-white shadow-lg shadow-accent-500/25'
+              : 'text-gray-400 hover:bg-gray-800 hover:text-white',
+          ]}
+        >
+          {mode.name}
+        </button>
+      ))}
+    </div>
+
+    <!-- Raw -->
+    <div data-mode-panel="raw" class="mt-8 hidden grid gap-6 md:grid-cols-2">
+      <div class="rounded-xl border border-gray-800 bg-gray-900/80 p-6">
+        <div class="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gray-500">
+          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" /></svg>
+          Voice Input
+        </div>
+        <p class="text-sm leading-relaxed text-gray-300">so yeah i went to the store yesterday and i buyed some stuff for the project and it was pretty expensive</p>
+      </div>
+      <div class="rounded-xl border border-accent-500/30 bg-gray-900/80 p-6">
+        <div class="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-accent-400">
+          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" /></svg>
+          Processed Output
+        </div>
+        <p class="text-sm leading-relaxed text-gray-300 italic">so yeah i went to the store yesterday and i buyed some stuff for the project and it was pretty expensive</p>
+        <p class="mt-3 text-xs text-gray-500">No processing applied — exact transcription.</p>
+      </div>
+    </div>
+
+    <!-- Clean (default, no hidden) -->
+    <div data-mode-panel="clean" class="mt-8 grid gap-6 md:grid-cols-2">
+      <div class="rounded-xl border border-gray-800 bg-gray-900/80 p-6">
+        <div class="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gray-500">
+          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" /></svg>
+          Voice Input
+        </div>
+        <p class="text-sm leading-relaxed text-gray-300">i went to the store yesterday and buyed some stuff it was like really expensive and i dont know if we should of done that</p>
+      </div>
+      <div class="rounded-xl border border-accent-500/30 bg-gray-900/80 p-6">
+        <div class="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-accent-400">
+          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" /></svg>
+          Processed Output
+        </div>
+        <p class="text-sm leading-relaxed text-gray-300">I went to the store yesterday and bought some things. It was really expensive, and I don&apos;t know if we should have done that.</p>
+      </div>
+    </div>
+
+    <!-- Structure -->
+    <div data-mode-panel="structure" class="mt-8 hidden grid gap-6 md:grid-cols-2">
+      <div class="rounded-xl border border-gray-800 bg-gray-900/80 p-6">
+        <div class="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gray-500">
+          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" /></svg>
+          Voice Input
+        </div>
+        <p class="text-sm leading-relaxed text-gray-300">so basically we need to fix the auth bug first then update the API docs and also remember to add tests for the new endpoints and oh yeah we should probably refactor the middleware too</p>
+      </div>
+      <div class="rounded-xl border border-accent-500/30 bg-gray-900/80 p-6">
+        <div class="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-accent-400">
+          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" /></svg>
+          Processed Output
+        </div>
+        <ul class="list-disc space-y-1 pl-5 text-sm leading-relaxed text-gray-300">
+          <li>Fix the authentication bug</li>
+          <li>Update the API documentation</li>
+          <li>Add tests for new endpoints</li>
+          <li>Refactor the middleware</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Prompt -->
+    <div data-mode-panel="prompt" class="mt-8 hidden grid gap-6 md:grid-cols-2">
+      <div class="rounded-xl border border-gray-800 bg-gray-900/80 p-6">
+        <div class="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gray-500">
+          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" /></svg>
+          Voice Input
+        </div>
+        <p class="text-sm leading-relaxed text-gray-300">i want to make a function that takes a list of users and filters out the inactive ones and then sorts them by their last login date</p>
+      </div>
+      <div class="rounded-xl border border-accent-500/30 bg-gray-900/80 p-6">
+        <div class="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-accent-400">
+          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" /></svg>
+          Processed Output
+        </div>
+        <div class="text-sm leading-relaxed text-gray-300">
+          <p class="mb-2 font-semibold text-gray-200">Task</p>
+          <p class="mb-3">Write a function that processes a user list.</p>
+          <p class="mb-2 font-semibold text-gray-200">Requirements</p>
+          <ul class="list-disc space-y-1 pl-5">
+            <li>Accept an array of user objects</li>
+            <li>Filter out users where isActive is false</li>
+            <li>Sort remaining users by lastLoginDate descending</li>
+            <li>Return the filtered, sorted array</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Code -->
+    <div data-mode-panel="code" class="mt-8 hidden grid gap-6 md:grid-cols-2">
+      <div class="rounded-xl border border-gray-800 bg-gray-900/80 p-6">
+        <div class="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gray-500">
+          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" /></svg>
+          Voice Input
+        </div>
+        <p class="text-sm leading-relaxed text-gray-300">this function takes a user id looks it up in the database checks if they have permission and returns their profile data with caching</p>
+      </div>
+      <div class="rounded-xl border border-accent-500/30 bg-gray-900/80 p-6">
+        <div class="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-accent-400">
+          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" /></svg>
+          Processed Output
+        </div>
+        <pre class="overflow-x-auto text-sm leading-relaxed text-gray-400"><code>{codeAfter}</code></pre>
+      </div>
+    </div>
+
+    <!-- Custom -->
+    <div data-mode-panel="custom" class="mt-8 hidden grid gap-6 md:grid-cols-2">
+      <div class="rounded-xl border border-gray-800 bg-gray-900/80 p-6">
+        <div class="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gray-500">
+          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" /></svg>
+          Voice Input
+        </div>
+        <p class="text-sm leading-relaxed text-gray-300">met with the design team talked about the new dashboard layout they want cards for metrics and a sidebar for navigation also discussed dark mode support</p>
+      </div>
+      <div class="rounded-xl border border-accent-500/30 bg-gray-900/80 p-6">
+        <div class="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-accent-400">
+          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" /></svg>
+          Processed Output
+        </div>
+        <div class="text-sm leading-relaxed text-gray-300">
+          <p class="mb-2 font-semibold text-gray-200">Meeting Notes — Design Team</p>
+          <p class="mb-1 mt-3 text-sm font-semibold text-gray-200">Discussion</p>
+          <ul class="list-disc space-y-1 pl-5">
+            <li>New dashboard layout review</li>
+            <li>Metric cards component design</li>
+            <li>Sidebar navigation structure</li>
+            <li>Dark mode implementation</li>
+          </ul>
+          <p class="mb-1 mt-3 text-sm font-semibold text-gray-200">Action Items</p>
+          <ul class="list-disc space-y-1 pl-5">
+            <li>Create card component prototypes</li>
+            <li>Draft sidebar navigation flow</li>
+            <li>Research dark mode patterns</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll('[role="tab"]');
+    const panels = document.querySelectorAll('[data-mode-panel]');
+
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        tabs.forEach(function(t) {
+          t.setAttribute('aria-selected', 'false');
+          t.classList.remove('bg-accent-500', 'text-white', 'shadow-lg', 'shadow-accent-500/25');
+          t.classList.add('text-gray-400');
+        });
+        tab.setAttribute('aria-selected', 'true');
+        tab.classList.add('bg-accent-500', 'text-white', 'shadow-lg', 'shadow-accent-500/25');
+        tab.classList.remove('text-gray-400');
+
+        panels.forEach(function(p) {
+          if (p.dataset.modePanel === tab.dataset.tab) {
+            p.classList.remove('hidden');
+          } else {
+            p.classList.add('hidden');
+          }
+        });
+      });
+    });
+  </script>
+</section>

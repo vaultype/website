@@ -1,0 +1,23 @@
+---
+const stats = [
+  { value: '90+', label: 'Languages' },
+  { value: '6', label: 'Processing Modes' },
+  { value: '<2s', label: 'Latency' },
+  { value: '0', label: 'Cloud Requests' },
+  { value: '100%', label: 'Open Source' },
+];
+---
+
+<section class="border-y border-gray-800 bg-gray-900/50 py-16">
+  <div
+    data-animate-stagger
+    class="mx-auto grid max-w-5xl grid-cols-2 gap-8 px-6 sm:grid-cols-3 lg:grid-cols-5"
+  >
+    {stats.map(stat => (
+      <div class="text-center">
+        <div class="text-3xl font-bold tracking-tight text-white">{stat.value}</div>
+        <div class="mt-1 text-sm font-medium text-gray-500">{stat.label}</div>
+      </div>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,59 @@
+---
+import logoLight from '../../assets/logo-light.svg';
+import { Image } from 'astro:assets';
+---
+
+<footer class="border-t border-gray-800 bg-gray-900/30">
+  <div class="mx-auto max-w-6xl px-6 pb-12 pt-16">
+    <div class="grid grid-cols-2 gap-10 md:grid-cols-4">
+      <!-- Brand column -->
+      <div class="col-span-2 md:col-span-1">
+        <a href="/" class="inline-block">
+          <Image src={logoLight} alt="VaulType" class="h-7 w-auto" />
+        </a>
+        <p class="mt-4 max-w-xs text-sm leading-relaxed text-gray-500">
+          Privacy-first voice-to-text for macOS. Your voice stays on your device.
+        </p>
+      </div>
+
+      <!-- Product -->
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-wider text-gray-400">Product</h3>
+        <ul class="mt-4 space-y-3">
+          <li><a href="#features" class="text-sm text-gray-500 transition-colors hover:text-white">Features</a></li>
+          <li><a href="#how-it-works" class="text-sm text-gray-500 transition-colors hover:text-white">How It Works</a></li>
+          <li><a href="#download" class="text-sm text-gray-500 transition-colors hover:text-white">Download</a></li>
+          <li><a href="#screenshots" class="text-sm text-gray-500 transition-colors hover:text-white">Screenshots</a></li>
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-wider text-gray-400">Resources</h3>
+        <ul class="mt-4 space-y-3">
+          <li><a href="/getting-started/quick-start/" class="text-sm text-gray-500 transition-colors hover:text-white">Documentation</a></li>
+          <li><a href="#faq" class="text-sm text-gray-500 transition-colors hover:text-white">FAQ</a></li>
+          <li><a href="https://github.com/vaultype/vaultype" target="_blank" rel="noopener noreferrer" class="text-sm text-gray-500 transition-colors hover:text-white">GitHub</a></li>
+          <li><a href="https://github.com/vaultype/vaultype/releases" target="_blank" rel="noopener noreferrer" class="text-sm text-gray-500 transition-colors hover:text-white">Releases</a></li>
+        </ul>
+      </div>
+
+      <!-- Community -->
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-wider text-gray-400">Community</h3>
+        <ul class="mt-4 space-y-3">
+          <li><a href="/contributing/contributing-guide/" class="text-sm text-gray-500 transition-colors hover:text-white">Contributing</a></li>
+          <li><a href="https://github.com/vaultype/vaultype/issues" target="_blank" rel="noopener noreferrer" class="text-sm text-gray-500 transition-colors hover:text-white">Issues</a></li>
+          <li><a href="https://github.com/vaultype/vaultype/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-sm text-gray-500 transition-colors hover:text-white">License (GPL-3.0)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="mt-12 border-t border-gray-800/60 pt-8">
+      <p class="text-center text-xs text-gray-600">
+        &copy; {new Date().getFullYear()} VaulType. Open source under GPL-3.0.
+      </p>
+    </div>
+  </div>
+</footer>

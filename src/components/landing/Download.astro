@@ -1,0 +1,98 @@
+---
+import SectionHeading from '../shared/SectionHeading.astro';
+---
+
+<section id="download" class="py-24 px-6">
+  <div data-animate>
+    <SectionHeading
+      title="Get VaulType"
+      subtitle="Free, open source, and ready in seconds."
+    />
+  </div>
+
+  <div
+    data-animate-stagger
+    class="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-3"
+  >
+    <!-- Homebrew (Recommended) -->
+    <div class="relative rounded-2xl border border-accent-500/50 bg-gray-900/80 p-8 shadow-lg shadow-accent-500/5 ring-1 ring-accent-500/20">
+      <div class="mb-5 inline-block rounded-full bg-accent-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-accent-400">
+        Recommended
+      </div>
+      <h3 class="text-xl font-bold text-white">Homebrew</h3>
+      <p class="mt-2 text-sm text-gray-400">One command. Auto-updates included.</p>
+      <div class="relative mt-6 overflow-hidden rounded-lg border border-gray-700/60 bg-gray-950 px-4 py-3 pr-12">
+        <code class="font-mono text-xs text-gray-300 sm:text-sm">brew install --cask vaultype/vaultype/vaultype</code>
+        <button
+          class="copy-btn absolute right-2 top-1/2 -translate-y-1/2 rounded-md p-1.5 text-gray-500 transition-colors hover:text-accent-400"
+          data-copy="brew install --cask vaultype/vaultype/vaultype"
+          aria-label="Copy to clipboard"
+        >
+          <svg class="copy-icon h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+          </svg>
+          <svg class="check-icon hidden h-4 w-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- DMG -->
+    <div class="rounded-2xl border border-gray-800 bg-gray-900/50 p-8 transition-all duration-300 hover:border-gray-700">
+      <div class="mb-5 h-6"></div>
+      <h3 class="text-xl font-bold text-white">Direct Download</h3>
+      <p class="mt-2 text-sm text-gray-400">Download the latest .dmg from GitHub Releases.</p>
+      <a
+        id="download-dmg-section"
+        href="https://github.com/vaultype/VaulType/releases"
+        class="mt-6 inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-gray-800 px-5 py-2.5 text-sm font-medium text-gray-200 transition-colors hover:border-gray-600 hover:bg-gray-700"
+      >
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+        </svg>
+        Download .dmg
+      </a>
+    </div>
+
+    <!-- Build from Source -->
+    <div class="rounded-2xl border border-gray-800 bg-gray-900/50 p-8 transition-all duration-300 hover:border-gray-700">
+      <div class="mb-5 h-6"></div>
+      <h3 class="text-xl font-bold text-white">Build from Source</h3>
+      <p class="mt-2 text-sm text-gray-400">Clone the repo and build with Xcode.</p>
+      <div class="relative mt-6 space-y-2 overflow-hidden rounded-lg border border-gray-700/60 bg-gray-950 px-4 py-3 pr-12">
+        <div><code class="font-mono text-xs text-gray-400 sm:text-sm">git clone https://github.com/vaultype/vaultype</code></div>
+        <div><code class="font-mono text-xs text-gray-400 sm:text-sm">cd vaultype</code></div>
+        <div><code class="font-mono text-xs text-gray-400 sm:text-sm">open VaulType.xcodeproj</code></div>
+        <button
+          class="copy-btn absolute right-2 top-2 rounded-md p-1.5 text-gray-500 transition-colors hover:text-accent-400"
+          data-copy="git clone https://github.com/vaultype/vaultype && cd vaultype && open VaulType.xcodeproj"
+          aria-label="Copy to clipboard"
+        >
+          <svg class="copy-icon h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+          </svg>
+          <svg class="check-icon hidden h-4 w-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.copy-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      navigator.clipboard.writeText(btn.getAttribute('data-copy'));
+      var copyIcon = btn.querySelector('.copy-icon');
+      var checkIcon = btn.querySelector('.check-icon');
+      copyIcon.classList.add('hidden');
+      checkIcon.classList.remove('hidden');
+      setTimeout(function() {
+        copyIcon.classList.remove('hidden');
+        checkIcon.classList.add('hidden');
+      }, 2000);
+    });
+  });
+</script>

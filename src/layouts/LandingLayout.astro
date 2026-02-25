@@ -1,0 +1,92 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" data-theme="dark" class="scroll-smooth" style="scroll-padding-top: 5rem;">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicons/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicons/favicon-96x96.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#7c6bb0" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="msapplication-TileColor" content="#2d1b4e" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    <meta name="theme-color" content="#2d1b4e" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://vaultype.app/social/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:site_name" content="VaulType" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://vaultype.app/social/twitter-card.png" />
+
+    <title>{title}</title>
+  </head>
+  <body class="bg-gray-950 text-gray-100 antialiased">
+    <slot />
+
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15, rootMargin: '0px 0px -50px 0px' }
+      );
+
+      document.querySelectorAll('[data-animate], [data-animate-stagger]').forEach((el) => {
+        observer.observe(el);
+      });
+    </script>
+
+    <script>
+      const RELEASES_API = 'https://api.github.com/repos/vaultype/VaulType/releases/latest';
+      const FALLBACK = 'https://github.com/vaultype/VaulType/releases';
+
+      function handleDownload(e) {
+        e.preventDefault();
+        fetch(RELEASES_API)
+          .then(function(r) { return r.json(); })
+          .then(function(data) {
+            const dmg = data.assets && data.assets.find(function(a) { return a.name.endsWith('.dmg'); });
+            window.location.href = dmg ? dmg.browser_download_url : FALLBACK;
+          })
+          .catch(function() { window.location.href = FALLBACK; });
+      }
+
+      document.querySelectorAll('#download-dmg, #download-dmg-section, #download-dmg-header, #download-dmg-mobile').forEach(function(el) {
+        el.addEventListener('click', handleDownload);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<svg viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoBg" x1="0" y1="0" x2="0" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2d1b4e"/>
+      <stop offset="100%" stop-color="#130c24"/>
+    </linearGradient>
+    <linearGradient id="logoBar" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e2d6f5"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Icon (small vault + waveform) -->
+  <g transform="translate(50, 50)">
+    <circle cx="0" cy="0" r="38" fill="url(#logoBg)"/>
+    <circle cx="0" cy="0" r="35" fill="none" stroke="#5b4a8a" stroke-width="2" opacity="0.5"/>
+    <circle cx="0" cy="0" r="27" fill="#170e2e" stroke="#3a2a60" stroke-width="0.8"/>
+    <!-- 5-bar waveform -->
+    <rect x="-16" y="-6" width="3.5" height="12" rx="1.75" fill="url(#logoBar)" opacity="0.7"/>
+    <rect x="-9" y="-12" width="3.5" height="24" rx="1.75" fill="url(#logoBar)" opacity="0.8"/>
+    <rect x="-2" y="-18" width="3.5" height="36" rx="1.75" fill="url(#logoBar)" opacity="1"/>
+    <rect x="5" y="-12" width="3.5" height="24" rx="1.75" fill="url(#logoBar)" opacity="0.8"/>
+    <rect x="12" y="-6" width="3.5" height="12" rx="1.75" fill="url(#logoBar)" opacity="0.7"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="105" y="60" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
+        font-size="38" fill="#e8e4f0" font-weight="700"
+        letter-spacing="1.5">Vaultype</text>
+</svg>

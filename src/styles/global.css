@@ -1,0 +1,75 @@
+@import 'tailwindcss';
+@import '@astrojs/starlight-tailwind';
+
+@theme {
+  /* Brand purple accent scale */
+  --color-accent-50: #f3f0ff;
+  --color-accent-100: #e9e3ff;
+  --color-accent-200: #d4c9ff;
+  --color-accent-300: #b5a1ff;
+  --color-accent-400: #9b80ff;
+  --color-accent-500: #7b61ff;
+  --color-accent-600: #6b4fff;
+  --color-accent-700: #5a3de6;
+  --color-accent-800: #4a32bf;
+  --color-accent-900: #3d2a9c;
+  --color-accent-950: #241768;
+
+  /* Gray scale (slate-ish, dark theme friendly) */
+  --color-gray-50: #f8f9fc;
+  --color-gray-100: #eef0f6;
+  --color-gray-200: #d5d9e5;
+  --color-gray-300: #b0b7c9;
+  --color-gray-400: #858da1;
+  --color-gray-500: #676e82;
+  --color-gray-600: #515769;
+  --color-gray-700: #3d4255;
+  --color-gray-800: #272b3b;
+  --color-gray-900: #181b28;
+  --color-gray-950: #0e1017;
+
+  /* Font stacks */
+  --font-sans: 'SF Pro Display', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', 'JetBrains Mono', 'Cascadia Code', Menlo, Monaco, 'Courier New', monospace;
+}
+
+/* Scroll-triggered animations */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+[data-animate].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-animate-stagger] > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+[data-animate-stagger].is-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-animate-stagger].is-visible > *:nth-child(1) { transition-delay: 0ms; }
+[data-animate-stagger].is-visible > *:nth-child(2) { transition-delay: 80ms; }
+[data-animate-stagger].is-visible > *:nth-child(3) { transition-delay: 160ms; }
+[data-animate-stagger].is-visible > *:nth-child(4) { transition-delay: 240ms; }
+[data-animate-stagger].is-visible > *:nth-child(5) { transition-delay: 320ms; }
+[data-animate-stagger].is-visible > *:nth-child(6) { transition-delay: 400ms; }
+[data-animate-stagger].is-visible > *:nth-child(7) { transition-delay: 480ms; }
+[data-animate-stagger].is-visible > *:nth-child(8) { transition-delay: 560ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-animate],
+  [data-animate-stagger] > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

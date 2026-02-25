@@ -1,0 +1,33 @@
+---
+import LandingLayout from '../layouts/LandingLayout.astro';
+import Header from '../components/shared/Header.astro';
+import Footer from '../components/shared/Footer.astro';
+import Hero from '../components/landing/Hero.astro';
+import Stats from '../components/landing/Stats.astro';
+import Features from '../components/landing/Features.astro';
+import HowItWorks from '../components/landing/HowItWorks.astro';
+import ProcessingModes from '../components/landing/ProcessingModes.astro';
+import Screenshots from '../components/landing/Screenshots.astro';
+import ComparisonTable from '../components/landing/ComparisonTable.astro';
+import Download from '../components/landing/Download.astro';
+import FAQ from '../components/landing/FAQ.astro';
+---
+
+<LandingLayout
+  title="VaulType — Private Voice-to-Text for macOS"
+  description="100% offline speech recognition with local AI processing. Your voice stays private. Text appears at your cursor."
+>
+  <Header />
+  <main id="main-content">
+    <Hero />
+    <Stats />
+    <Features />
+    <HowItWorks />
+    <ProcessingModes />
+    <Screenshots />
+    <ComparisonTable />
+    <Download />
+    <FAQ />
+  </main>
+  <Footer />
+</LandingLayout>

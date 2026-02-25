@@ -1,0 +1,85 @@
+---
+import SectionHeading from '../shared/SectionHeading.astro';
+
+const screenshots = [
+  { src: '/assets/screenshots/01_Welcome.png', alt: 'VaulType Welcome — Privacy-First Speech-to-Text' },
+  { src: '/assets/screenshots/02_History.png', alt: 'VaulType Dictation History — Search and re-inject past transcriptions' },
+  { src: '/assets/screenshots/03_Settings_General.png', alt: 'VaulType Settings — Fully customizable hotkeys and text injection' },
+  { src: '/assets/screenshots/04_Models.png', alt: 'VaulType Models — Choose from multiple Whisper AI models' },
+  { src: '/assets/screenshots/05_Commands.png', alt: 'VaulType Voice Commands — Control your Mac hands-free' },
+  { src: '/assets/screenshots/06_MenuBar.png', alt: 'VaulType Menu Bar — Always ready, lightweight and unobtrusive' },
+];
+---
+
+<section id="screenshots" class="py-24 px-6">
+  <div data-animate>
+    <SectionHeading
+      title="See It in Action"
+      subtitle="A clean, native interface that stays out of your way."
+    />
+  </div>
+
+  <div
+    data-animate-stagger
+    class="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+  >
+    {screenshots.map(shot => (
+      <button
+        type="button"
+        class="screenshot-thumb cursor-zoom-in overflow-hidden rounded-2xl border border-gray-800 bg-gray-900/50 transition-all duration-300 hover:border-gray-700 hover:shadow-lg hover:shadow-accent-500/5"
+        data-src={shot.src}
+        data-alt={shot.alt}
+      >
+        <img
+          src={shot.src}
+          alt={shot.alt}
+          loading="lazy"
+          decoding="async"
+          class="w-full"
+        />
+      </button>
+    ))}
+  </div>
+
+  <!-- Lightbox overlay -->
+  <div id="lightbox" class="fixed inset-0 z-[100] hidden items-center justify-center bg-gray-950/90 backdrop-blur-sm">
+    <button
+      id="lightbox-close"
+      type="button"
+      class="absolute right-6 top-6 rounded-lg p-2 text-gray-400 transition-colors hover:text-white"
+      aria-label="Close"
+    >
+      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+    <img id="lightbox-img" src="" alt="" class="max-h-[90vh] max-w-[90vw] rounded-xl shadow-2xl" />
+  </div>
+</section>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+
+  document.querySelectorAll('.screenshot-thumb').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      lightboxImg.src = btn.getAttribute('data-src');
+      lightboxImg.alt = btn.getAttribute('data-alt');
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex');
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.classList.add('hidden');
+    lightbox.classList.remove('flex');
+  }
+
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) closeLightbox();
+  });
+</script>

@@ -1,0 +1,90 @@
+---
+import SectionHeading from '../shared/SectionHeading.astro';
+
+const stages = [
+  {
+    title: 'Your Voice',
+    subtitle: 'Speak naturally',
+    icon: 'mic',
+  },
+  {
+    title: 'whisper.cpp',
+    subtitle: 'Speech Recognition',
+    icon: 'waveform',
+  },
+  {
+    title: 'llama.cpp',
+    subtitle: 'Text Enhancement',
+    icon: 'brain',
+  },
+  {
+    title: 'Any App',
+    subtitle: 'Text at Cursor',
+    icon: 'cursor',
+  },
+];
+---
+
+<section id="how-it-works" class="py-24 px-6">
+  <div data-animate>
+    <SectionHeading
+      title="How It Works"
+      subtitle="A four-stage pipeline that turns your voice into polished text — entirely on your Mac."
+    />
+  </div>
+
+  <div class="mx-auto mt-16 max-w-5xl">
+    <div class="flex flex-col items-center gap-6 lg:flex-row lg:justify-between lg:gap-0">
+      {stages.map((stage, i) => (
+        <>
+          <div data-animate class="flex flex-col items-center text-center">
+            <div class="flex h-20 w-20 items-center justify-center rounded-2xl border border-gray-700/60 bg-gray-900 shadow-lg shadow-black/20">
+              {stage.icon === 'mic' && (
+                <svg class="h-9 w-9 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" />
+                </svg>
+              )}
+              {stage.icon === 'waveform' && (
+                <svg class="h-9 w-9 text-accent-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" d="M3 12h1m2 0V8m0 8V8m4 9V7m0 10V7m4 11V6m0 12V6m4 10V8m0 8V8m2 4h1" />
+                </svg>
+              )}
+              {stage.icon === 'brain' && (
+                <svg class="h-9 w-9 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" />
+                </svg>
+              )}
+              {stage.icon === 'cursor' && (
+                <svg class="h-9 w-9 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243l-1.59-1.59" />
+                </svg>
+              )}
+            </div>
+            <h3 class="mt-4 text-base font-semibold text-white">{stage.title}</h3>
+            <p class="mt-1 text-sm text-gray-500">{stage.subtitle}</p>
+          </div>
+
+          {/* Arrow connector (not after last item) */}
+          {i < stages.length - 1 && (
+            <>
+              {/* Desktop arrow */}
+              <div class="hidden shrink-0 text-gray-700 lg:block">
+                <svg class="h-5 w-12" viewBox="0 0 48 20" fill="none">
+                  <path d="M0 10h40" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3" />
+                  <path d="M36 4l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              {/* Mobile arrow */}
+              <div class="text-gray-700 lg:hidden">
+                <svg class="h-8 w-5" viewBox="0 0 20 32" fill="none">
+                  <path d="M10 0v24" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3" />
+                  <path d="M4 20l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+            </>
+          )}
+        </>
+      ))}
+    </div>
+  </div>
+</section>
