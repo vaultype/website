@@ -34,3 +34,7 @@ docker-compose.yml
 .dockerignore
 nginx/
 scripts/deploy-prod.sh
+
+# Claude Code
+.claude/
+CLAUDE.md
