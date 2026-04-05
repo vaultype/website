@@ -33,7 +33,13 @@ Dockerfile
 docker-compose.yml
 .dockerignore
 nginx/
-scripts/deploy-prod.sh
+scripts/
+
+# Project planning
+plan.md
+
+# GitHub workflows
+.github/workflows/
 
 # Claude Code
 .claude/
