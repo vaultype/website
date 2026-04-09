@@ -118,7 +118,7 @@ brew uninstall --cask vaultype
 If you prefer a manual installation:
 
 1. Go to the [VaulType GitHub Releases](https://github.com/vaultype/vaultype/releases) page.
-2. Download the latest `VaulType-x.y.z.dmg` file.
+2. Download the latest `VaulType.dmg` file.
 3. Open the DMG and drag **VaulType.app** into your **Applications** folder.
 4. Eject the DMG.
 
