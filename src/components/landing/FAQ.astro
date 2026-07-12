@@ -11,6 +11,10 @@ const faqs = [
     answer: 'Yes! VaulType is completely free and open source under the GPL-3.0 license. No subscriptions, no freemium tiers, no hidden costs.',
   },
   {
+    question: 'Should I get the Mac App Store version or the direct download?',
+    answer: 'Both are free and share the same on-device AI pipeline. The direct download (DMG or Homebrew) types text at your cursor and includes the full voice-command set, global shortcut aliases, and plugins. The Mac App Store version is sandboxed per Apple\'s rules, so it copies dictated text to the clipboard for you to paste with ⌘V, and voice commands are limited to launching/switching apps, running Shortcuts, and custom aliases. Choose the direct download for the full experience, or the App Store version if you prefer App Store installs and updates.',
+  },
+  {
     question: 'Does it work offline?',
     answer: 'Absolutely. VaulType is designed with a zero-network architecture. All speech recognition and text processing happens locally on your Mac. No internet connection is ever required.',
   },
@@ -32,11 +36,11 @@ const faqs = [
   },
   {
     question: 'Can I use VaulType with any app?',
-    answer: 'Yes. VaulType uses macOS accessibility APIs to inject text directly at your cursor position in any application — text editors, terminals, browsers, IDEs, email clients, and more.',
+    answer: 'Yes. The direct download injects text directly at your cursor position in any application — text editors, terminals, browsers, IDEs, email clients, and more. The Mac App Store version copies the text to your clipboard and prompts you to press ⌘V, which also works in any app.',
   },
   {
     question: 'How do voice commands work?',
-    answer: 'VaulType recognizes special voice command prefixes to launch applications, manage windows, and control system functions. Say things like "Launch Safari" or "Minimize window" while VaulType is listening.',
+    answer: 'VaulType recognizes special voice command prefixes to launch applications, manage windows, and control system functions. Say things like "Launch Safari" or "Minimize window" while VaulType is listening. In the Mac App Store version, commands are limited to launching/switching apps, running Shortcuts, and custom aliases (sandbox rules exclude window and system control).',
   },
   {
     question: 'How do I choose the right Whisper model?',

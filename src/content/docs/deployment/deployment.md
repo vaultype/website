@@ -63,7 +63,7 @@ VaulType is distributed as a native macOS application through multiple channels:
 | GitHub Releases | Signed, notarized DMG | Active (Phase 6) |
 | Sparkle Auto-Update | In-app updater with EdDSA signatures | Integrated (Sparkle 2.x) |
 | Homebrew Cask | `brew install --cask vaultype` | Planned |
-| Mac App Store | App Store submission | Future (requires sandbox adjustments) |
+| Mac App Store | Sandboxed `APPSTORE` build, clipboard-only text delivery | Active ([App Store listing](https://apps.apple.com/app/vaultype/id6759566772)) |
 
 ---
 
