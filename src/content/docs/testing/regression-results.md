@@ -415,7 +415,7 @@ The following sequence exercises the complete pipeline end-to-end. Run this afte
 
 ## Test File Reference
 
-All test files are located in `/Users/harungungorer/dev/VaulType/VaulTypeTests/`:
+All test files are located in `VaulTypeTests/` in the repository root:
 
 | Test File | Phase | Key Classes Under Test |
 |-----------|-------|----------------------|
